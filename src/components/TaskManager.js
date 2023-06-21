@@ -8,7 +8,8 @@ const TaskManager = () => {
   const [tasks, setTasks] = useState([]);
 
   // to add input value to an array
-  const handleAddTask = () => {
+  const handleAddTask = (e) => {
+    e.preventDefault();
     if (inputValue.length === 0) {
       return;
     }
@@ -63,18 +64,18 @@ const TaskManager = () => {
   return (
     <div className="container">
       {/* container to add tasks */}
-      <div className="add-task">
+
+      <form onSubmit={handleAddTask} className="add-task">
         <input
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           className="add-input"
           autoFocus
           autoComplete="off"
+          maxLength={25}
         />
-        <button onClick={handleAddTask} className="add-btn">
-          Add
-        </button>
-      </div>
+        <button className="add-btn">Add</button>
+      </form>
       {/* container to show tasks */}
 
       <div className="main-task-container">
